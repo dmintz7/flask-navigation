@@ -1,6 +1,7 @@
 import collections
 
-from flask import url_for, request, Markup
+from flask import url_for, request
+from markupsafe import Markup
 
 from .utils import freeze_dict, join_html_attrs
 
@@ -128,8 +129,8 @@ class Item(object):
         return ItemReference(self.endpoint, self.args)
 
 
-class ItemCollection(collections.MutableSequence,
-                     collections.Iterable):
+class ItemCollection(collections.abc.MutableSequence,
+                     collections.abc.Iterable):
     """The collection of navigation items.
 
     This collection is a mutable sequence. All items have order index, and
